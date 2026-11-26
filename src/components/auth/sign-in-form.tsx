@@ -19,6 +19,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { routes } from "@/lib/routes";
 
 export default function SignInForm() {
   const router = useRouter();
@@ -40,9 +41,9 @@ export default function SignInForm() {
 
     try {
       const { error } = await authClient.signIn.email({
-        email,
+        email: email.trim(),
         password,
-        callbackURL: "/auth/redirect",
+        callbackURL: routes.authRedirect,
       });
 
       if (error) {
@@ -51,7 +52,7 @@ export default function SignInForm() {
       }
 
       toast.success("Signed in successfully!");
-      router.push("/auth/redirect");
+      router.replace(routes.authRedirect);
       router.refresh();
     } catch {
       toast.error("Something went wrong. Please try again.");
@@ -66,7 +67,7 @@ export default function SignInForm() {
     try {
       const { error } = await authClient.signIn.social({
         provider: "google",
-        callbackURL: "/auth/redirect",
+        callbackURL: routes.authRedirect,
       });
 
       if (error) {

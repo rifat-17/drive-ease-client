@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
 import { authClient } from "@/lib/auth-client";
-import { getDashboardRoute } from "@/lib/routes";
+import { getDashboardRoute, routes } from "@/lib/routes";
 
 export default function AuthRedirectPage() {
   const router = useRouter();
@@ -16,13 +16,11 @@ export default function AuthRedirectPage() {
     if (isPending) return;
 
     if (!session?.user) {
-      router.replace("/sign-in");
+      router.replace(routes.signIn);
       return;
     }
 
-    const destination = getDashboardRoute(
-      session.user.role
-    );
+    const destination = getDashboardRoute(session.user.role);
 
     router.replace(destination);
   }, [session, isPending, router]);

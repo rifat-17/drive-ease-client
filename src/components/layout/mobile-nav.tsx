@@ -20,7 +20,11 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { useSignOut } from "@/hooks/use-sign-out"
-import { publicNavLinks, routes } from "@/lib/routes"
+import {
+  publicNavLinks,
+  routes,
+  getDashboardRoute,
+} from "@/lib/routes"
 
 const linkClassName =
   "flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
@@ -71,18 +75,25 @@ export function MobileNav({ user }: { user: NavbarUser | null }) {
           {user ? (
             <>
               <Separator className="my-2" />
-              {accountLinks.map(({ label, href, icon: Icon }) => (
-                <NavLink
-                  key={href}
-                  href={href}
-                  onClick={close}
-                  className={linkClassName}
-                  activeClassName={activeLinkClassName}
-                >
-                  <Icon className="size-4" aria-hidden="true" />
-                  {label}
-                </NavLink>
-              ))}
+              {accountLinks.map(({ label, href, icon: Icon }) => {
+                const linkHref =
+                  label === "Dashboard"
+                    ? getDashboardRoute(user.role)
+                    : href
+
+                return (
+                  <NavLink
+                    key={href}
+                    href={linkHref}
+                    onClick={close}
+                    className={linkClassName}
+                    activeClassName={activeLinkClassName}
+                  >
+                    <Icon className="size-4" aria-hidden="true" />
+                    {label}
+                  </NavLink>
+                )
+              })}
             </>
           ) : null}
         </nav>

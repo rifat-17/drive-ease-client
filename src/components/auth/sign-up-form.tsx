@@ -39,17 +39,17 @@ const roleOptions: {
   label: string
   description: string
 }[] = [
-  {
-    value: "RENTER",
-    label: "Renter",
-    description: "Book a car for your next trip.",
-  },
-  {
-    value: "OWNER",
-    label: "Owner",
-    description: "List your cars and earn from them.",
-  },
-]
+    {
+      value: "RENTER",
+      label: "Renter",
+      description: "Book a car for your next trip.",
+    },
+    {
+      value: "OWNER",
+      label: "Owner",
+      description: "List your cars and earn from them.",
+    },
+  ]
 
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -171,6 +171,7 @@ export function SignUpForm() {
         email: email.trim(),
         password,
         role,
+        callbackURL: routes.authRedirect,
         ...(image ? { image } : {}),
       })
 
@@ -184,7 +185,7 @@ export function SignUpForm() {
       setSuccessMessage(
         "Your account is ready. Taking you to your dashboard…"
       )
-      router.push(routes.dashboard)
+      router.replace(routes.authRedirect);
       router.refresh()
     } catch (error) {
       setFormError(

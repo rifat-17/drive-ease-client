@@ -7,6 +7,9 @@ export const routes = {
   cars: "/cars",
   signIn: "/sign-in",
   signUp: "/sign-up",
+  
+  authRedirect: "/auth/redirect",
+  
   dashboard: "/dashboard",
   renterDashboard: "/dashboard/renter",
   ownerDashboard: "/dashboard/owner",
