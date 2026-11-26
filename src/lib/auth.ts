@@ -4,7 +4,7 @@ import { mongodbAdapter } from "@better-auth/mongo-adapter";
 import { APIError, createAuthMiddleware } from "better-auth/api";
 import { jwt } from "better-auth/plugins";
 
-const client = new MongoClient(process.env.MONG0DB_URI as string);
+const client = new MongoClient(process.env.MONGODB_URI as string);
 const db = client.db("driveEase");
 
 export const auth = betterAuth({
@@ -30,7 +30,7 @@ export const auth = betterAuth({
                 type: ["RENTER", "OWNER", "ADMIN"],
                 required: true,
                 defaultValue: "RENTER",
-                input: true,
+                input: false,
             },
 
             isBlocked: {
@@ -41,7 +41,7 @@ export const auth = betterAuth({
             },
 
             subscriptionPlan: {
-                type: ["FREE", "PREMIUM"],
+                type: ["FREE", "PRO"],
                 required: false,
                 defaultValue: "FREE",
                 input: false,
@@ -75,8 +75,8 @@ export const auth = betterAuth({
 
                 if (
                     role !== undefined &&
-                    role !== "CUSTOMER" &&
-                    role !== "VENDOR"
+                    role !== "RENTER" &&
+                    role !== "OWNER"
                 ) {
                     throw new APIError("BAD_REQUEST", {
                         message: "Invalid account role.",
