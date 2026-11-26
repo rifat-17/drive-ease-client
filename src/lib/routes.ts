@@ -22,3 +22,8 @@ export const accountNavLinks = [
   { label: "Dashboard", href: routes.dashboard },
   { label: "Profile Settings", href: routes.profileSettings },
 ] as const
+
+export const carRoutes = {
+  details: (carId: string) => `/cars/${carId}`,
+  request: (carId: string) => `/cars/${carId}/request`,
+} as const
