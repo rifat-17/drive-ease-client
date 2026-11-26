@@ -12,6 +12,8 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { useSession } from "@/lib/auth-client"
 import { publicNavLinks, routes } from "@/lib/routes"
 
+
+
 const linkClassName =
   "rounded-full px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 const activeLinkClassName =
@@ -19,6 +21,7 @@ const activeLinkClassName =
 
 export function Navbar() {
   const { data: session, isPending } = useSession()
+  
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">

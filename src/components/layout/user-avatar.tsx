@@ -7,6 +7,7 @@ export type NavbarUser = {
   name: string
   email: string
   image?: string | null
+  role: string
 }
 
 function getInitials(user: NavbarUser) {

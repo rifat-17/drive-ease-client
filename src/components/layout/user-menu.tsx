@@ -13,6 +13,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useSignOut } from "@/hooks/use-sign-out"
+import { getDashboardRoute } from "@/lib/routes"
+
+
 
 export function UserMenu({ user }: { user: NavbarUser }) {
   const { signOut, isPending } = useSignOut()
@@ -46,16 +49,23 @@ export function UserMenu({ user }: { user: NavbarUser }) {
 
         <DropdownMenuSeparator />
 
-        {accountLinks.map(({ label, href, icon: Icon }) => (
-          <DropdownMenuItem
-            key={href}
-            render={<Link href={href} />}
-            className="cursor-pointer px-2 py-1.5"
-          >
-            <Icon aria-hidden="true" />
-            {label}
-          </DropdownMenuItem>
-        ))}
+        {accountLinks.map(({ label, href, icon: Icon }) => {
+          const linkHref =
+            label === "Dashboard"
+              ? getDashboardRoute(user.role)
+              : href
+
+          return (
+            <DropdownMenuItem
+              key={href}
+              render={<Link href={linkHref} />}
+              className="cursor-pointer px-2 py-1.5"
+            >
+              <Icon aria-hidden="true" />
+              {label}
+            </DropdownMenuItem>
+          )
+        })}
 
         <DropdownMenuSeparator />
 
