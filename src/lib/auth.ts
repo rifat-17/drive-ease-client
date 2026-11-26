@@ -26,11 +26,13 @@ export const auth = betterAuth({
         modelName: "users",
 
         additionalFields: {
+            // Chosen at sign-up (RENTER/OWNER). The before hook rejects
+            // anything else, so ADMIN can never be self-assigned.
             role: {
                 type: ["RENTER", "OWNER", "ADMIN"],
                 required: true,
                 defaultValue: "RENTER",
-                input: false,
+                input: true,
             },
 
             isBlocked: {
