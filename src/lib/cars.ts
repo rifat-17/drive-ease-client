@@ -51,6 +51,14 @@ export const initialCarFilters: CarFilters = {
   seats: "all",
 }
 
+export const carCategories: CarCategory[] = [
+  "Sedan",
+  "SUV",
+  "Hatchback",
+  "Coupe",
+  "Luxury",
+]
+
 export const transmissionLabels: Record<Transmission, string> = {
   manual: "Manual",
   automatic: "Automatic",

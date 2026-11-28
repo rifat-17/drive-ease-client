@@ -13,7 +13,7 @@ export const ownerNavItems: DashboardNavItem[] = [
   },
   {
     label: "My Cars",
-    href: "/dashboard/owner/cars",
+    href: "/dashboard/owner/my-cars",
     icon: "car-front",
   },
   {
@@ -23,7 +23,7 @@ export const ownerNavItems: DashboardNavItem[] = [
   },
   {
     label: "Rental Requests",
-    href: "/dashboard/owner/requests",
+    href: "/dashboard/owner/rental-requests",
     icon: "clipboard-list",
   },
   {
